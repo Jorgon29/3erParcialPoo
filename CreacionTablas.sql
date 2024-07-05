@@ -1,0 +1,31 @@
+CREATE DATABASE BCN;
+USE BCN;
+
+CREATE TABLE Facilitador(
+    id INT IDENTITY CONSTRAINT PK_Facilitador PRIMARY KEY,
+    nombre VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Cliente(
+    id INT IDENTITY CONSTRAINT PK_Cliente PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    direccion VARCHAR(50) NOT NULL,
+    telefono VARCHAR(10)
+);
+
+CREATE TABLE Tarjeta(
+    id INT IDENTITY CONSTRAINT PK_Tarjeta PRIMARY KEY,
+    numero VARCHAR(16) NOT NULL,
+    fecha_exp DATE NOT NULL,
+    tipo VARCHAR(7) NOT NULL,
+    id_cliente INT NOT NULL CONSTRAINT FK_Tarjeta_Cliente FOREIGN KEY REFERENCES Cliente(id) ON DELETE CASCADE,
+    id_facilitador INT NOT NULL CONSTRAINT FK_Tarjeta_Facilitador FOREIGN KEY REFERENCES Facilitador(id) ON DELETE CASCADE 
+);
+
+CREATE TABLE Transaccion(
+    id INT IDENTITY CONSTRAINT PK_Transaccion PRIMARY KEY,
+    total DECIMAL(20,2) NOT NULL,
+    fecha DATE NOT NULL,
+    descripcion VARCHAR(50),
+    id_tarjeta INT NOT NULL CONSTRAINT FK_Transaccion_Tarjeta FOREIGN KEY REFERENCES Tarjeta(id) ON DELETE CASCADE
+);
