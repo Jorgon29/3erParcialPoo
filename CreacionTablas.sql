@@ -29,3 +29,4 @@ CREATE TABLE Transaccion(
     descripcion VARCHAR(50),
     id_tarjeta INT NOT NULL CONSTRAINT FK_Transaccion_Tarjeta FOREIGN KEY REFERENCES Tarjeta(id) ON DELETE CASCADE
 );
+

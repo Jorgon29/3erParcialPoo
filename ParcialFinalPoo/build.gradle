@@ -50,7 +50,7 @@ dependencies {
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 
-  implementation ("com.microsoft.sqlserver:mssql-jdbc")
+  implementation 'com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre7'
 }
 
 test {
