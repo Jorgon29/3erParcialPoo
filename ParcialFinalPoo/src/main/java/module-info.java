@@ -11,4 +11,13 @@ module org.poo.parcialfinalpoo {
 
     opens org.poo.parcialfinalpoo to javafx.fxml;
     exports org.poo.parcialfinalpoo;
+    exports org.poo.parcialfinalpoo.crud;
+    exports org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
+    exports org.poo.parcialfinalpoo.Controllers;
+    exports org.poo.parcialfinalpoo.Controllers.Crud;
+
+    opens org.poo.parcialfinalpoo.crud to javafx.fxml;
+    opens org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
+    opens org.poo.parcialfinalpoo.Controllers;
+    opens org.poo.parcialfinalpoo.Controllers.Crud;
 }
