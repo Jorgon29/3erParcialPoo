@@ -43,4 +43,9 @@ public class MenuPrincipalController {
         }
     }
 
+    @FXML
+    public void enSalir(){
+        BcnApp.getAppStage().close();
+    }
+
 }

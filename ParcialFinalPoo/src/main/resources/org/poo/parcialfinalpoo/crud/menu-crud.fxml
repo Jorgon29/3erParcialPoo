@@ -28,10 +28,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnInsertar" mnemonicParsing="false" text="Insertar" />
-            <Button fx:id="btnVer" mnemonicParsing="false" text="Ver registro" GridPane.columnIndex="1" />
-            <Button fx:id="btnActualizar" mnemonicParsing="false" text="Actualizar" GridPane.rowIndex="1" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="btnInsertar" mnemonicParsing="false" text="Insertar" onAction="#enInsertar"/>
+            <Button fx:id="btnVer" mnemonicParsing="false" text="Ver registro" GridPane.columnIndex="1" onAction="#enVer" />
+            <Button fx:id="btnActualizar" mnemonicParsing="false" text="Actualizar" GridPane.rowIndex="1" onAction="#enActualizar"/>
+            <Button fx:id="btnEliminar" mnemonicParsing="false" text="Eliminar" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#enEliminar"/>
          </children>
       </GridPane>
    </center>

@@ -2,6 +2,7 @@ module org.poo.parcialfinalpoo {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires java.sql;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -15,6 +16,9 @@ module org.poo.parcialfinalpoo {
     exports org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
     exports org.poo.parcialfinalpoo.Controllers;
     exports org.poo.parcialfinalpoo.Controllers.Crud;
+    exports org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
+
+    opens org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
 
     opens org.poo.parcialfinalpoo.crud to javafx.fxml;
     opens org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
