@@ -8,6 +8,7 @@ module org.poo.parcialfinalpoo {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens org.poo.parcialfinalpoo to javafx.fxml;
     exports org.poo.parcialfinalpoo;

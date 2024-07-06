@@ -10,7 +10,7 @@ import java.io.IOException;
 public class BcnApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu-principal.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("generador-documentos.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
         stage.setTitle("BCN");
         stage.setScene(scene);
