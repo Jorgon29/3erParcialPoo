@@ -18,6 +18,8 @@ module org.poo.parcialfinalpoo {
     exports org.poo.parcialfinalpoo.Controllers.Crud;
     exports org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
 
+    exports org.poo.parcialfinalpoo.crud.Cliente;
+    opens org.poo.parcialfinalpoo.crud.Cliente to javafx.graphics;
     opens org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
 
     opens org.poo.parcialfinalpoo.crud to javafx.fxml;

@@ -91,4 +91,25 @@ public class QueryCliente {
             }
         }
     }
+
+    public static void eliminar(int id) throws SQLException{
+            Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
+                    ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
+            Statement statement = connection.createStatement();
+            statement.execute("DELETE FROM Cliente WHERE id = " + id);
+            connection.close();
+    }
+
+    public static void insertar(String nombre, String direccion, String telefono) throws SQLException{
+        Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
+                ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "INSERT INTO Cliente VALUES(?, ?, ?)"
+        );
+        preparedStatement.setString(1, nombre);
+        preparedStatement.setString(2, direccion);
+        preparedStatement.setString(3, telefono);
+        preparedStatement.execute();
+        connection.close();
+    }
 }
