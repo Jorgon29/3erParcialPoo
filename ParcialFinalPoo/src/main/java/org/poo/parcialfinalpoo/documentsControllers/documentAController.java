@@ -46,7 +46,7 @@ public class documentAController {
                 fileWriter.write("Reporte tipo A del cliente: "+nombreCliente+" \n\n"); //00054123 Se agrega algo de texto al inicio del reporte para un mejor formato del mismo
 
 
-                rs = stmt.executeQuery("select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = "+IDBuscar.getText()+" where T.fecha between '"+FechaInicial.getText()+"' AND '"+FechaFinal.getText()+"';");//00054123 Query para obtener los detalles de las compras entre las fechas ingresadas
+                rs = stmt.executeQuery("select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = T2.id_cliente where C.id = "+IDBuscar.getText()+" and T.fecha between '"+FechaInicial.getText()+"' AND '"+FechaFinal.getText()+"';");//00054123 Query para obtener los detalles de las compras entre las fechas ingresadas
 
 
                 while (rs.next()) { //00054123 Empieza a iterar los resultados de la query para ponerlos en el reporte
