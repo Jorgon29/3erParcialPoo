@@ -1,0 +1,4 @@
+Reporte tipo B del cliente: Marco 
+
+No hay ningun gasto en el año y mes especificado
+********************************************************

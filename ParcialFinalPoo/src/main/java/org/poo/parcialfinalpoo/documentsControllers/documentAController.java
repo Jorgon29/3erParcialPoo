@@ -1,4 +1,4 @@
-package org.poo.parcialfinalpoo;
+package org.poo.parcialfinalpoo.documentsControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 
-public class generadorController {
+public class documentAController {
 
     @FXML
     private TextField FechaFinal;
@@ -35,7 +35,7 @@ public class generadorController {
             ResultSet rs = stmt.executeQuery("select c.nombre as nombre from Cliente c where c.id = "+ IDBuscar.getText());//00054123 Se ejecuta la query que busca el nombre de la persona para tener un reporte mas completo
             rs.next();
             String nombreCliente = rs.getString("nombre"); //00054123 se guarda el nombre en una variable para dar un reporte con un mejor formato
-            Calendar calendar = Calendar.getInstance(); //00054123 Llamando a la instancia del calendario
+            Calendar calendar = Calendar.getInstance(); //00054123 Llamando a la instancia del calendario para pdoer seguir el formato en que se nombran los registros
 
             try {
 
@@ -43,7 +43,7 @@ public class generadorController {
 
                 FileWriter fileWriter = new FileWriter(reporte);//00054123 Iniciando un fileWriter para poder llenar el reporte de todo
 
-                fileWriter.write("Reporte del cliente: "+nombreCliente+" \n\n"); //00054123 Se agrega algo de texto al inicio del reporte para un mejor formato del mismo
+                fileWriter.write("Reporte tipo A del cliente: "+nombreCliente+" \n\n"); //00054123 Se agrega algo de texto al inicio del reporte para un mejor formato del mismo
 
 
                 rs = stmt.executeQuery("select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = "+IDBuscar.getText()+" where T.fecha between '"+FechaInicial.getText()+"' AND '"+FechaFinal.getText()+"';");//00054123 Query para obtener los detalles de las compras entre las fechas ingresadas
@@ -58,7 +58,7 @@ public class generadorController {
 
             }catch (IOException E){System.out.println("Something went wrong with the file");} //00054123 Catch para errores al momento de trabajar los archivos
             con.close(); //00054123 se cierra la conexion al servidor para evitar uso de recursos innecesarios y por buenas practicas
-        }catch(SQLException e){System.out.println("Something went wrong");} //Catch para errores de sql
+        }catch(SQLException e){System.out.println("Something went wrong");} //00054123 Catch para errores de sql
 
     }
 

@@ -12,4 +12,6 @@ module org.poo.parcialfinalpoo {
 
     opens org.poo.parcialfinalpoo to javafx.fxml;
     exports org.poo.parcialfinalpoo;
+    exports org.poo.parcialfinalpoo.documentsControllers;
+    opens org.poo.parcialfinalpoo.documentsControllers to javafx.fxml;
 }

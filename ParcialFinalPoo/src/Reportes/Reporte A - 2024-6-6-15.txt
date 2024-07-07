@@ -1,4 +1,4 @@
-Reporte del cliente: Marco 
+Reporte tipo A del cliente: Marco 
 
  Total : 20.89
  Fecha de transsaccion: 2004-12-12
