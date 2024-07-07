@@ -17,7 +17,6 @@ public class BcnApp extends Application {
         stage.setTitle("BCN");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public static Stage getAppStage() {

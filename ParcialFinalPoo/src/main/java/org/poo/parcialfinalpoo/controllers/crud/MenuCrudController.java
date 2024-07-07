@@ -1,11 +1,11 @@
-package org.poo.parcialfinalpoo.Controllers.Crud;
+package org.poo.parcialfinalpoo.controllers.crud;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.poo.parcialfinalpoo.BcnApp;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies.MenuCrudStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.MenuCrudStrategy;
 
 import java.io.IOException;
 

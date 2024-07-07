@@ -1,4 +1,4 @@
-package org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
+package org.poo.parcialfinalpoo.controllers.crud.menuStrategies;
 
 public interface MenuCrudStrategy {
     public void enInsertar();

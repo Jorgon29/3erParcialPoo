@@ -1,6 +1,6 @@
-package org.poo.parcialfinalpoo.crud.Cliente;
+package org.poo.parcialfinalpoo.crud;
 
-public interface BuilderCrudCliente {
+public interface BuilderCrud<T> {
     public void reiniciar();
     public void ponerBotonEliminar();
     public void ponerBotonActualizar();
@@ -8,5 +8,5 @@ public interface BuilderCrudCliente {
     public void ponerLabels();
     public void ponerBuscador();
     public void ponerBotonInsertar();
-    public CrudClienteApp getResultado();
+    public T getResultado();
 }

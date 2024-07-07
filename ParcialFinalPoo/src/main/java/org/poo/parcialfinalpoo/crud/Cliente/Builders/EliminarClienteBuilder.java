@@ -1,9 +1,9 @@
 package org.poo.parcialfinalpoo.crud.Cliente.Builders;
 
-import org.poo.parcialfinalpoo.crud.Cliente.BuilderCrudCliente;
+import org.poo.parcialfinalpoo.crud.BuilderCrud;
 import org.poo.parcialfinalpoo.crud.Cliente.CrudClienteApp;
 
-public class EliminarClienteBuilder implements BuilderCrudCliente {
+public class EliminarClienteBuilder implements BuilderCrud<CrudClienteApp> {
     private CrudClienteApp app;
     @Override
     public void reiniciar() {

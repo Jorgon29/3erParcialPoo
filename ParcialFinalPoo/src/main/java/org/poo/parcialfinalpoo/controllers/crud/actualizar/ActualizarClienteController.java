@@ -1,4 +1,4 @@
-package org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
+package org.poo.parcialfinalpoo.controllers.crud.actualizar;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

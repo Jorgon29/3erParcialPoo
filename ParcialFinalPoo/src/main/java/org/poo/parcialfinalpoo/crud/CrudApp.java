@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuCrudController;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies.MenuCrudStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.MenuCrudController;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.MenuCrudStrategy;
 
 public class CrudApp extends Application {
     @Override

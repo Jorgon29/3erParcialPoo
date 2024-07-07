@@ -5,11 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.poo.parcialfinalpoo.Controllers.Crud.CrudClienteController;
+import org.poo.parcialfinalpoo.controllers.crud.CrudClienteController;
+import org.poo.parcialfinalpoo.crud.CrudAbstractApp;
 
 import java.io.IOException;
 
-public class CrudClienteApp extends Application {
+public class CrudClienteApp extends CrudAbstractApp {
     private FXMLLoader loader;
     private Parent root;
     @Override
@@ -49,6 +50,5 @@ public class CrudClienteApp extends Application {
     public void ponerBotonInsertar(){
         ((CrudClienteController) loader.getController()).ponerBotonInsertar();
     }
-
 
 }

@@ -1,7 +1,6 @@
-package org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
+package org.poo.parcialfinalpoo.controllers.crud.menuStrategies;
 
 import org.poo.parcialfinalpoo.BcnApp;
-import org.poo.parcialfinalpoo.crud.Cliente.BuilderCrudCliente;
 import org.poo.parcialfinalpoo.crud.Cliente.Builders.ActualizarClienteBuilder;
 import org.poo.parcialfinalpoo.crud.Cliente.Builders.EliminarClienteBuilder;
 import org.poo.parcialfinalpoo.crud.Cliente.Builders.InsertarClienteBuilder;

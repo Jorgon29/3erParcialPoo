@@ -112,4 +112,18 @@ public class QueryCliente {
         preparedStatement.execute();
         connection.close();
     }
+
+    public static ArrayList<Cliente> select() throws SQLException{
+        ArrayList<Cliente> resultado = new ArrayList<>();
+        Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
+                ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
+        Statement statement = connection.createStatement();
+        statement.execute("SELECT * FROM Cliente");
+        ResultSet rs = statement.getResultSet();
+        while (rs.next()){
+            resultado.add(new Cliente(rs.getInt("id"), rs.getString("nombre"), rs.getString("telefono"), rs.getString("direccion")));
+        }
+        connection.close();
+        return resultado;
+    }
 }

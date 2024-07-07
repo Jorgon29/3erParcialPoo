@@ -1,4 +1,4 @@
-package org.poo.parcialfinalpoo.Controllers.Crud;
+package org.poo.parcialfinalpoo.controllers.crud;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -13,34 +13,15 @@ import org.poo.parcialfinalpoo.model.QueryCliente;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CrudClienteController {
-    @FXML protected ComboBox<Integer> cbIds;
+public class CrudClienteController extends CrudAbstractController{
     protected TextField txtNombre;
     protected TextField txtDireccion;
     protected TextField txtTelefono;
     protected Label lblNombre;
     protected Label lblDireccion;
     protected Label lblTelefono;
-    @FXML protected GridPane gridDatos;
-    @FXML protected HBox hbAbajo;
-    @FXML protected HBox hbArriba;
-    @FXML protected Label lblTitulo;
-    private int actual;
-    @FXML public void enRegresar(){
-        BcnApp app = new BcnApp();
-        try {
-            if (BcnApp.getAppStage() != null){
-                app.start(BcnApp.getAppStage());
-            } else {
-                app.start(new Stage());
-            }
 
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    private void enBuscar(){
+    protected void enBuscar(){
         try {
 
             Cliente cliente = QueryCliente.select(cbIds.getValue());
@@ -61,7 +42,7 @@ public class CrudClienteController {
             a.showAndWait();
         }
     }
-    private void enActualizar(){
+    protected void enActualizar(){
         try {
             QueryCliente.actualizar(new Cliente(actual, txtNombre.getText(), txtTelefono.getText(), txtDireccion.getText()));
         } catch (Exception e){
@@ -71,7 +52,7 @@ public class CrudClienteController {
             a.showAndWait();
         }
     }
-    private void enEliminar(){
+    protected void enEliminar(){
         try {
             QueryCliente.eliminar(actual);
             asignarIdsComboBox();
@@ -86,22 +67,8 @@ public class CrudClienteController {
         }
     }
 
-    public void ponerBotonActualizar(){
-        Button button = new Button();
-        button.setText("Actualizar");
-        button.setOnAction(actionEvent -> {
-            enActualizar();
-        });
-        hbAbajo.getChildren().add(button);
-    }
-    public void ponerBotonEliminar(){
-        Button button = new Button();
-        button.setText("Eliminar");
-        button.setOnAction(actionEvent -> {
-            enEliminar();
-        });
-        hbAbajo.getChildren().add(button);
-    }
+
+
 
     public void ponerLabels(){
         lblDireccion = new Label();
@@ -122,27 +89,12 @@ public class CrudClienteController {
 
     }
 
-    public void ponerBuscador(){
-        cbIds = new ComboBox<>();
-        asignarIdsComboBox();
-        hbArriba.getChildren().add(cbIds);
-        Button button = new Button("Buscar");
-        button.setOnAction(actionEvent -> {
-            enBuscar();
-        });
-        hbArriba.getChildren().add(button);
-    }
-
-    private void asignarIdsComboBox(){
+    protected void asignarIdsComboBox(){
         ArrayList<Integer> ids = QueryCliente.getIds();
         cbIds.setItems(FXCollections.observableArrayList(ids));
     }
 
-    public Label getLblTitulo(){
-        return lblTitulo;
-    }
-
-    private void enInsertar(){
+    protected void enInsertar(){
         try {
             QueryCliente.insertar(txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
             txtTelefono.setText("");
@@ -156,13 +108,6 @@ public class CrudClienteController {
         }
     }
 
-    public void ponerBotonInsertar(){
-        Button button = new Button();
-        button.setText("Insertar");
-        button.setOnAction(actionEvent -> {
-            enInsertar();
-        });
-        hbAbajo.getChildren().add(button);
-    }
+
 
 }

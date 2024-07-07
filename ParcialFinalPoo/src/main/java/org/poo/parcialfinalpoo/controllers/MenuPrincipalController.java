@@ -1,12 +1,11 @@
-package org.poo.parcialfinalpoo.Controllers;
+package org.poo.parcialfinalpoo.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import org.poo.parcialfinalpoo.BcnApp;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies.ClienteStrategy;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies.CompraStrategy;
-import org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies.TarjetaStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.ClienteStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.CompraStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.TarjetaStrategy;
 import org.poo.parcialfinalpoo.crud.CrudApp;
 
 public class MenuPrincipalController {

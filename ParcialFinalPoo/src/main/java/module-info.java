@@ -13,17 +13,18 @@ module org.poo.parcialfinalpoo {
     opens org.poo.parcialfinalpoo to javafx.fxml;
     exports org.poo.parcialfinalpoo;
     exports org.poo.parcialfinalpoo.crud;
-    exports org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
-    exports org.poo.parcialfinalpoo.Controllers;
-    exports org.poo.parcialfinalpoo.Controllers.Crud;
-    exports org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
+    exports org.poo.parcialfinalpoo.controllers.crud.menuStrategies;
+    exports org.poo.parcialfinalpoo.controllers;
+    exports org.poo.parcialfinalpoo.controllers.crud;
+    exports org.poo.parcialfinalpoo.controllers.crud.actualizar;
 
     exports org.poo.parcialfinalpoo.crud.Cliente;
+    exports org.poo.parcialfinalpoo.model;
     opens org.poo.parcialfinalpoo.crud.Cliente to javafx.graphics;
-    opens org.poo.parcialfinalpoo.Controllers.Crud.Actualizar;
+    opens org.poo.parcialfinalpoo.controllers.crud.actualizar;
 
-    opens org.poo.parcialfinalpoo.crud to javafx.fxml;
-    opens org.poo.parcialfinalpoo.Controllers.Crud.MenuStrategies;
-    opens org.poo.parcialfinalpoo.Controllers;
-    opens org.poo.parcialfinalpoo.Controllers.Crud;
+    opens org.poo.parcialfinalpoo.controllers.crud.menuStrategies;
+    opens org.poo.parcialfinalpoo.controllers;
+    opens org.poo.parcialfinalpoo.controllers.crud;
+    opens org.poo.parcialfinalpoo.crud to javafx.fxml, javafx.graphics;
 }

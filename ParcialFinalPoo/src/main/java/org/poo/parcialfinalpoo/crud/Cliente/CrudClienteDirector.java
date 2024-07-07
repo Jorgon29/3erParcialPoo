@@ -1,12 +1,14 @@
 package org.poo.parcialfinalpoo.crud.Cliente;
 
+import org.poo.parcialfinalpoo.crud.BuilderCrud;
+
 public class CrudClienteDirector {
-    private BuilderCrudCliente builder;
-    public CrudClienteDirector(BuilderCrudCliente builder){
+    private BuilderCrud<CrudClienteApp> builder;
+    public CrudClienteDirector(BuilderCrud<CrudClienteApp> builder){
         this.builder = builder;
     }
 
-    public void cambiarBuilder(BuilderCrudCliente builder){
+    public void cambiarBuilder(BuilderCrud<CrudClienteApp> builder){
         this.builder = builder;
     }
 
