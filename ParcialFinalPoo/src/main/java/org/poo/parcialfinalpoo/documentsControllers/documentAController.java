@@ -1,7 +1,7 @@
 package org.poo.parcialfinalpoo.documentsControllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import java.util.Calendar;
 import java.io.File;
@@ -12,22 +12,18 @@ import java.sql.*;
 public class documentAController {
 
     @FXML
-    private TextField FechaFinal;
+    private TextField FechaFinal; //00054123 Un textfield donde se ingresa la fecha final a buscar
 
     @FXML
-    private TextField FechaInicial;
+    private TextField FechaInicial; //00054123 Un textfield donde se ingresa la fecha inicial para buscar
 
     @FXML
-    private TextField IDBuscar;
+    private TextField IDBuscar; //0054123 Un textfield donde se ingresa la id que se quiere buscar
 
-    @FXML
-    private Button Volver;
-
-    @FXML
-    private Button generarReporte;
 
     public void generarReporte(){
         try {
+            if(!(FechaFinal.getText().isEmpty() || FechaInicial.getText().isEmpty() || IDBuscar.getText().isEmpty())){ //00054123 Revisa que se hayan ingresado todos los campos necesarios
 
             Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "sa", "041204Dyn*");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
             Statement stmt = con.createStatement(); //00054123 Se crea un statement usando la conexion al servidor
@@ -41,12 +37,12 @@ public class documentAController {
 
                 File reporte = new File("src"+File.separator+"Reportes"+ File.separator+"Reporte A - "+calendar.get(Calendar.YEAR)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.DAY_OF_MONTH)+"-"+calendar.get(Calendar.HOUR_OF_DAY)+".txt"); //00054123 Generando el archivo de texto donde está el reporte con formato ReporteA - fecha y hora
 
-                FileWriter fileWriter = new FileWriter(reporte);//00054123 Iniciando un fileWriter para poder llenar el reporte de todo
+                FileWriter fileWriter = new FileWriter(reporte);//00054123 Iniciando un fileWriter para poder llenar el reporte
 
                 fileWriter.write("Reporte tipo A del cliente: "+nombreCliente+" \n\n"); //00054123 Se agrega algo de texto al inicio del reporte para un mejor formato del mismo
 
 
-                rs = stmt.executeQuery("select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = T2.id_cliente where C.id = "+IDBuscar.getText()+" and T.fecha between '"+FechaInicial.getText()+"' AND '"+FechaFinal.getText()+"';");//00054123 Query para obtener los detalles de las compras entre las fechas ingresadas
+                rs = stmt.executeQuery("select T.total as total, T.fecha as fecha, T.descripcion as descripcion from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = T2.id_cliente where C.id = "+IDBuscar.getText()+" and T.fecha between '"+FechaInicial.getText()+"' AND '"+FechaFinal.getText()+"';");//00054123 Query para obtener los detalles de las compras entre las fechas ingresadas
 
 
                 while (rs.next()) { //00054123 Empieza a iterar los resultados de la query para ponerlos en el reporte
@@ -56,9 +52,29 @@ public class documentAController {
                 }
                 fileWriter.close();//00054123 Se cierra el file writter para evitar uso innecesario de recursos
 
-            }catch (IOException E){System.out.println("Something went wrong with the file");} //00054123 Catch para errores al momento de trabajar los archivos
+            }catch (IOException E){} //00054123 Catch para errores al momento de trabajar los archivos
+
             con.close(); //00054123 se cierra la conexion al servidor para evitar uso de recursos innecesarios y por buenas practicas
-        }catch(SQLException e){System.out.println("Something went wrong");} //00054123 Catch para errores de sql
+
+            }else {
+
+                Alert error = new Alert(Alert.AlertType.ERROR); //00054123 Como no se ingresaron todos los campos se crea un nuevo error
+                error.setTitle("Error"); //00054123 El titulo del error
+                error.setHeaderText(null); //00054123 es una alerta breve asi que solo tendra cuerpo
+                error.setContentText("Debe de llenar todos los campos pedidos");//00054123 Se informa que no se ingresaron todos los campos
+                error.showAndWait(); //00054123 Se muestra el error y se espera para continuar
+
+            }
+        }catch(SQLException e){
+
+            Alert error = new Alert(Alert.AlertType.ERROR); //00054123 Se crea un error porque se ingresaron datos incorrectos
+            error.setTitle("Error"); //00054123 Se le pone un titulo a la alerta del error
+            error.setHeaderText(null); //00054123 se pone un header null
+            error.setContentText("Por favor revise los datos ingresados"); //00054123 EL cuepor del error ya que se ingresaron datos de forma incorrecta
+            error.showAndWait(); //00054123 Se muestra el mensaje de eror y se espera para seguir
+
+        } //00054123 Catch para errores de sql
+
 
     }
 

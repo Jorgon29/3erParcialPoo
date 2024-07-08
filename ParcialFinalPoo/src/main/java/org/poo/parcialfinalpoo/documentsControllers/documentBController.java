@@ -1,7 +1,7 @@
 package org.poo.parcialfinalpoo.documentsControllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -12,29 +12,25 @@ import java.util.Calendar;
 
 public class documentBController {
 
-    @FXML
-    private Button generateReport;
 
     @FXML
-    private TextField monthSearch;
+    private TextField monthSearch; //00054123 Text field para ingresar el mes que se quiere buscar
 
     @FXML
-    private Button returnButton;
+    private TextField searchID; //00054123 Un text field para ingresar la id a buscar
 
     @FXML
-    private TextField searchID;
-
-    @FXML
-    private TextField yearSearch;
+    private TextField yearSearch; //00054123 Un text field para ingresar el año a buscar
 
 
     public void onGenerarReporte(){
         try{
+            if(yearSearch.getText().isEmpty()||monthSearch.getText().isEmpty()||searchID.getText().isEmpty()){ //00054123 Revisa si no se ha ingresado algun campo que es necesario para la busqueda
             Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "sa", "041204Dyn*");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
-            Statement stmt = con.createStatement();
+            Statement stmt = con.createStatement(); //00054123 se crea un statement usando la conexion
 
             ResultSet rs = stmt.executeQuery("select c.nombre as nombre from Cliente c where c.id = "+ searchID.getText());//00054123 Se ejecuta la query que busca el nombre de la persona para tener un reporte mas completo
-            rs.next();
+            rs.next(); //00054123 Se pasa al siguiente resultado para obtener el nombre
 
             String nombreCliente = rs.getString("nombre"); //00054123 se guarda el nombre en una variable para dar un reporte con un mejor formato
             Calendar calendar = Calendar.getInstance(); //00054123 Llamando a la instancia del calendario
@@ -56,7 +52,24 @@ public class documentBController {
 
             }catch (IOException e){} //00054123 El catch para un error en los archivos
             con.close(); //00054123 Cerrando la conexion para ahorrar recursos y por buenas practicas
-        }catch(SQLException e){System.out.println("Something went wrong");} //00054123 catch por un error en la base de datos
+            }else{
+
+                Alert error = new Alert(Alert.AlertType.ERROR); //00054123 Se crea una alerta de error porque no se llenaron todos los campos
+                error.setTitle("Error"); //00054123 Se pone un titulo de error
+                error.setHeaderText(null);//00054123 no es necesario un header asi que lo asignamos null
+                error.setContentText("Por favor llene todos los campos"); //00054123 El cuerpo del error
+                error.showAndWait(); //00054123 se muestra el error y se espera
+
+            }
+        }catch(SQLException e){
+
+            Alert error = new Alert(Alert.AlertType.ERROR); //00054123 Se crea una alerta de error
+            error.setTitle("Error"); //00054123 Se le pone un titulo al error
+            error.setHeaderText(null); //00054123 no es necesario un header para un error corto
+            error.setContentText("Por favor revise los datos ingresados"); //00054123 Se coloca el cuerpo del error para informar a quien lo usa
+            error.showAndWait(); //00054123 Se muestra el error y se espera para continuar
+
+        } //00054123 catch por un error en la base de datos
 
     }
 

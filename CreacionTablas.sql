@@ -38,10 +38,13 @@ select * from Cliente
 use master
 drop database BCN
 select c.nombre as nombre from Cliente c where c.id =1;
-select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = T2.id_cliente where C.id = 1 and T.fecha between '1999-10-10' AND '2024-10-10';
+select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombre as nombre from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta INNER JOIN Cliente C on C.id = T2.id_cliente where C.id = 01 and T.fecha between '1999-10-10' AND '2024-10-10';
 
-select sum(T.total) as total from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta where T2.id_cliente = 1 and datepart(month,fecha) = 12 and datepart(year,fecha) = 2004;
+select sum(T.total) as total from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta where T2.id_cliente = 1 and datepart(month,fecha) = 012 and datepart(year,fecha) = 2004;
 
 select * from Tarjeta
 update Tarjeta set tipo = 'credito' where id = 1
-
+insert into Facilitador (nombre) VALUES ('Chivo wallet')
+select * from Facilitador
+select C.nombre as nombre, Sum(T2.total) as total, COUNT(T2.id) as transacciones from Cliente C inner join Tarjeta T on C.id = T.id_cliente inner join Transaccion T2 on T.id = T2.id_tarjeta inner join Facilitador F on F.id = T.id_facilitador where F.nombre = 'nayib'
+GROUP BY C.nombre
