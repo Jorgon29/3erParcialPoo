@@ -10,8 +10,10 @@ import org.poo.parcialfinalpoo.BcnApp;
 import org.poo.parcialfinalpoo.model.*;
 
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class CrudTarjetaController extends CrudAbstractController {
     protected Label lblNumero;
@@ -37,19 +39,21 @@ public class CrudTarjetaController extends CrudAbstractController {
                 lblFacilitador.setText(tarjeta.getFacilitador());
             } else{
                 txtNumero.setText(tarjeta.getNumero());
-                txtFechaExp.
+                txtFechaExp = new DatePicker(tarjeta.getFecha_exp());
+                txtTipo.getEditor().setText(tarjeta.getTipo());
+                txtCliente.getEditor().setText(tarjeta.getCliente());
+                txtFacilitador.getEditor().setText(tarjeta.getFacilitador());
             }
-            actual = cbIds.getValue();
         } catch (Exception e){
             Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Cliente no encontrado");
+            a.setContentText("Tarjeta no encontrada");
             a.setTitle("Error");
             a.showAndWait();
         }
     }
     protected void enActualizar(){
         try {
-
+            QueryTarjeta.actualizar(txtNumero.getText(), txtFechaExp.getValue(), txtTipo.getValue(), txtCliente.getValue().getId(), txtFacilitador.getValue().getId());
         } catch (Exception e){
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText("Error en la actualizacion");
@@ -121,6 +125,8 @@ public class CrudTarjetaController extends CrudAbstractController {
 
     protected void enInsertar(){
         try {
+            QueryTarjeta.insertar(txtNumero.getText(), txtFechaExp.getValue(), txtTipo.getValue(), txtCliente.getValue().getId(), txtFacilitador.getValue().getId());
+       txtNumero.setText("");
 
         } catch (SQLException e){
             Alert a = new Alert(Alert.AlertType.ERROR);

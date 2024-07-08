@@ -1,6 +1,7 @@
 package org.poo.parcialfinalpoo.model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class QueryTarjeta {
@@ -37,19 +38,20 @@ public class QueryTarjeta {
         connection.close();
         return resultado;
     }
-/*
-    public static void actualizar(Tarjeta tarjeta){
+
+    public static void actualizar(String numero, LocalDate fecha_exp, String tipo, int id_cliente, int id_facilitador){
         Connection connection = null;
         try {
             connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                     ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
             PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE Tarjeta SET numero = ?, fecha_exp = ?, tipo = ?,  WHERE id = ?"
+                    "UPDATE Tarjeta SET numero = ?, fecha_exp = ?, tipo = ?, id_cliente = ?, id_facilitador = ? WHERE id = ?"
             );
-            statement.setString(1, cliente.getNombre());
-            statement.setString(2, cliente.getDireccion());
-            statement.setString(3, cliente.getTelefono());
-            statement.setInt(4, cliente.getId());
+            statement.setString(1, numero);
+            statement.setDate(2, Date.valueOf(fecha_exp));
+            statement.setString(3, tipo);
+            statement.setInt(4, id_cliente);
+            statement.setInt(5, id_facilitador);
             statement.execute();
             connection.close();
         } catch (SQLException e){
@@ -63,7 +65,7 @@ public class QueryTarjeta {
                 }
             }
         }
-    }*/
+    }
 
     public static void eliminar(int id) throws SQLException{
         Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
@@ -71,6 +73,22 @@ public class QueryTarjeta {
         Statement statement = connection.createStatement();
         statement.execute("DELETE FROM Tarjeta WHERE id = " + id);
         connection.close();
+    }
+
+    public static void insertar(String numero, LocalDate fecha_exp, String tipo, int id_cliente, int id_facilitador) throws SQLException{
+        Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
+                ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
+        PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO Tarjeta VALUES(?, ?, ?, ?, ?)"
+        );
+        statement.setString(1, numero);
+        statement.setDate(2, Date.valueOf(fecha_exp));
+        statement.setString(3, tipo);
+        statement.setInt(4, id_cliente);
+        statement.setInt(5, id_facilitador);
+        statement.execute();
+        connection.close();
+
     }
 
     

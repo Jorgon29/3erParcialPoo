@@ -23,36 +23,36 @@ public class CrudTarjetaApp extends CrudAbstractApp {
 
     @Override
     public void ponerBotonActualizar() {
-
+        ((CrudTarjetaController) loader.getController()).ponerBotonActualizar();
     }
 
     @Override
     public void ponerBotonEliminar() {
-
+        ((CrudTarjetaController) loader.getController()).ponerBotonEliminar();
     }
 
     @Override
     public void ponerLabels() {
-
+        ((CrudTarjetaController) loader.getController()).ponerLabels();
     }
 
     @Override
     public void ponerTextFields() {
-
+        ((CrudTarjetaController) loader.getController()).ponerTextFields();
     }
 
     @Override
     public void ponerBuscador() {
-
+        ((CrudTarjetaController) loader.getController()).ponerBuscador();
     }
 
     @Override
     public void ponerBotonInsertar() {
-
+        ((CrudTarjetaController) loader.getController()).ponerBotonInsertar();
     }
 
     public void cambiarTitulo(String titulo){
-        ((CrudClienteController) loader.getController()).getLblTitulo().setText(titulo);
+        ((CrudTarjetaController) loader.getController()).getLblTitulo().setText(titulo);
     }
     public CrudTarjetaApp(){
         loader = new FXMLLoader(getClass().getResource("/org/poo/parcialfinalpoo/crud/crud-tarjeta.fxml"));
