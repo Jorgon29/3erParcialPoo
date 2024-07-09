@@ -48,3 +48,4 @@ insert into Facilitador (nombre) VALUES ('Chivo wallet')
 select * from Facilitador
 select C.nombre as nombre, Sum(T2.total) as total, COUNT(T2.id) as transacciones from Cliente C inner join Tarjeta T on C.id = T.id_cliente inner join Transaccion T2 on T.id = T2.id_tarjeta inner join Facilitador F on F.id = T.id_facilitador where F.nombre = 'nayib'
 GROUP BY C.nombre
+select * from Transaccion

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -8,12 +9,10 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.poo.parcialfinalpoo.documentsControllers.documentBController">
    <children>
       <TextField fx:id="searchID" layoutX="219.0" layoutY="92.0" />
-      <TextField fx:id="yearSearch" layoutX="220.0" layoutY="245.0" />
-      <TextField fx:id="monthSearch" layoutX="219.0" layoutY="174.0" />
       <Text layoutX="235.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la ID a buscar" />
-      <Text layoutX="206.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el mes que desea revisar" />
-      <Text layoutX="202.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el año que quiere revisar" />
-      <Button fx:id="generateReport" layoutX="243.0" layoutY="291.0" mnemonicParsing="false" onAction="#onGenerarReporte" text="Generar reporte" />
-      <Button fx:id="returnButton" layoutX="272.0" layoutY="338.0" mnemonicParsing="false" text="Volver" />
+      <Text layoutX="181.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el mes y año que desea revisar" />
+      <Button fx:id="generateReport" layoutX="243.0" layoutY="237.0" mnemonicParsing="false" onAction="#onGenerarReporte" text="Generar reporte" />
+      <Button fx:id="returnButton" layoutX="272.0" layoutY="337.0" mnemonicParsing="false" onAction="#onVolver" text="Volver" />
+      <DatePicker fx:id="fecha" layoutX="210.0" layoutY="179.0" />
    </children>
 </AnchorPane>

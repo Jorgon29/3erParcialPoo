@@ -1,4 +1,4 @@
 Reporte tipo B del cliente: Marco 
 
-No hay ningun gasto en el año y mes especificado
+El total gastado en: 12/2004 ha sido de: $20.89
 ********************************************************
