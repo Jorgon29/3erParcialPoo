@@ -9,6 +9,10 @@ module org.poo.parcialfinalpoo {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+
+    exports org.poo.parcialfinalpoo.documentsControllers;
+    opens org.poo.parcialfinalpoo.documentsControllers to javafx.fxml;
+
     requires kotlin.stdlib;
 
     opens org.poo.parcialfinalpoo to javafx.fxml;
