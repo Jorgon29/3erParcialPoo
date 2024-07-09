@@ -1,9 +1,6 @@
-package org.poo.parcialfinalpoo.model;
-
-import javafx.scene.control.DatePicker;
+package org.poo.parcialfinalpoo.modelBase.tipos;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 
 public class Tarjeta {
     private int id;

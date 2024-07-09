@@ -30,6 +30,7 @@
                   <Button mnemonicParsing="false" text="Clientes" fx:id="btnClientes" onAction="#enClientes"/>
                   <Button mnemonicParsing="false" text="Tarjetas" fx:id="btnTarjetas" onAction="#enTarjeta"/>
                   <Button mnemonicParsing="false" text="Compras" fx:id="btnCompras" onAction="#enCompras"/>
+                  <Button mnemonicParsing="false" text="Facilitador" fx:id="btnFacilitador" onAction="#enFacilitador"/>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="2000.0" prefWidth="2000.0">

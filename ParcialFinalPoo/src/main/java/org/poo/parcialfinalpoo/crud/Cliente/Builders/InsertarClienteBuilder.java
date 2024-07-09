@@ -8,7 +8,7 @@ public class InsertarClienteBuilder implements BuilderCrud<CrudClienteApp> {
     @Override
     public void reiniciar() {
         app = new CrudClienteApp();
-        app.cambiarTitulo("Insertart cliente");
+        app.cambiarTitulo("Insertar cliente");
     }
 
     @Override

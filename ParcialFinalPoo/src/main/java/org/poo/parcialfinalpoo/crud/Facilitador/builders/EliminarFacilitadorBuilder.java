@@ -1,39 +1,40 @@
-package org.poo.parcialfinalpoo.crud.tarjeta.builders;
+package org.poo.parcialfinalpoo.crud.Facilitador.builders;
 
 import org.poo.parcialfinalpoo.crud.BuilderCrud;
-import org.poo.parcialfinalpoo.crud.tarjeta.CrudTarjetaApp;
+import org.poo.parcialfinalpoo.crud.Facilitador.CrudFacilitadorApp;
 
-public class ActualizarTarjetaBuilder implements BuilderCrud<CrudTarjetaApp> {
-    private CrudTarjetaApp app;
+public class EliminarFacilitadorBuilder implements BuilderCrud<CrudFacilitadorApp> {
+
+    private CrudFacilitadorApp app;
     @Override
     public void reiniciar() {
-        app = new CrudTarjetaApp();
-        app.cambiarTitulo("Actualizar tarjeta");
+        app = new CrudFacilitadorApp();
+        app.cambiarTitulo("Eliminar facilitador");
     }
 
     @Override
     public void ponerBotonEliminar() {
-
+        app.ponerBotonEliminar();
     }
 
     @Override
     public void ponerBotonActualizar() {
-        app.ponerBotonActualizar();
+
     }
 
     @Override
     public void ponerTextFields() {
-app.ponerTextFields();
+
     }
 
     @Override
     public void ponerLabels() {
-
+        app.ponerLabels();
     }
 
     @Override
     public void ponerBuscador() {
-app.ponerBuscador();
+        app.ponerBuscador();
     }
 
     @Override
@@ -42,7 +43,7 @@ app.ponerBuscador();
     }
 
     @Override
-    public CrudTarjetaApp getResultado() {
+    public CrudFacilitadorApp getResultado() {
         return app;
     }
 }

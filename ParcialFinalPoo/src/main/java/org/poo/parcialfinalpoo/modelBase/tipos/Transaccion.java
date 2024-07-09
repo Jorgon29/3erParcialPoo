@@ -1,4 +1,4 @@
-package org.poo.parcialfinalpoo.model;
+package org.poo.parcialfinalpoo.modelBase.tipos;
 
 import java.time.LocalDate;
 

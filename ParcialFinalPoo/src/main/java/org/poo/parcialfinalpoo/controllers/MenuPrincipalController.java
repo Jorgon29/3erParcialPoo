@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import org.poo.parcialfinalpoo.BcnApp;
 import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.ClienteStrategy;
 import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.CompraStrategy;
+import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.FacilitadorStrategy;
 import org.poo.parcialfinalpoo.controllers.crud.menuStrategies.TarjetaStrategy;
 import org.poo.parcialfinalpoo.crud.CrudApp;
 
@@ -37,6 +38,14 @@ public class MenuPrincipalController {
     public void enTarjeta(){
         try {
             (new CrudApp()).start(BcnApp.getAppStage(), new TarjetaStrategy());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public void enFacilitador(){
+        try {
+            (new CrudApp()).start(BcnApp.getAppStage(), new FacilitadorStrategy());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

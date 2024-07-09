@@ -1,11 +1,13 @@
-package org.poo.parcialfinalpoo.model;
+package org.poo.parcialfinalpoo.modelBase.query;
+
+import org.poo.parcialfinalpoo.modelBase.tipos.Tarjeta;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class QueryTarjeta {
-    public static Tarjeta select(int id) throws SQLException {
+public class QueryTarjeta implements Queryable<Tarjeta>{
+    public Tarjeta select(int id) throws SQLException {
         Tarjeta resultado = null;
         Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                 ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
@@ -25,7 +27,7 @@ public class QueryTarjeta {
         return resultado;
     }
 
-    public static ArrayList<Integer> getIds() throws SQLException{
+    public ArrayList<Integer> getIds() throws SQLException{
         Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                 ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
         ArrayList<Integer> resultado = new ArrayList<>();
@@ -39,35 +41,25 @@ public class QueryTarjeta {
         return resultado;
     }
 
-    public static void actualizar(String numero, LocalDate fecha_exp, String tipo, int id_cliente, int id_facilitador){
+    public void actualizar(Tarjeta tarjeta) throws SQLException{
         Connection connection = null;
-        try {
+
             connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                     ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE Tarjeta SET numero = ?, fecha_exp = ?, tipo = ?, id_cliente = ?, id_facilitador = ? WHERE id = ?"
             );
-            statement.setString(1, numero);
-            statement.setDate(2, Date.valueOf(fecha_exp));
-            statement.setString(3, tipo);
-            statement.setInt(4, id_cliente);
-            statement.setInt(5, id_facilitador);
+            statement.setString(1, tarjeta.getNumero());
+            statement.setDate(2, Date.valueOf(tarjeta.getFecha_exp()));
+            statement.setString(3, tarjeta.getTipo());
+            statement.setInt(4, tarjeta.getId_cliente());
+            statement.setInt(5, tarjeta.getId_facilitador());
+            statement.setInt(6, tarjeta.getId());
             statement.execute();
             connection.close();
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-            System.out.println(e.getSQLState());
-            if (connection != null){
-                try {
-                    connection.close();
-                } catch (SQLException exception){
-                    exception.printStackTrace();
-                }
-            }
-        }
     }
 
-    public static void eliminar(int id) throws SQLException{
+    public void eliminar(int id) throws SQLException{
         Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                 ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
         Statement statement = connection.createStatement();
@@ -75,21 +67,25 @@ public class QueryTarjeta {
         connection.close();
     }
 
-    public static void insertar(String numero, LocalDate fecha_exp, String tipo, int id_cliente, int id_facilitador) throws SQLException{
+    public void insertar(Tarjeta tarjeta) throws SQLException{
         Connection connection = DriverManager.getConnection( "jdbc:sqlserver://localhost:1433;databaseName=BCN"
                 ,"Final_Poo_2024" ,"FinalPoo2024_25%" );
         PreparedStatement statement = connection.prepareStatement(
                 "INSERT INTO Tarjeta VALUES(?, ?, ?, ?, ?)"
         );
-        statement.setString(1, numero);
-        statement.setDate(2, Date.valueOf(fecha_exp));
-        statement.setString(3, tipo);
-        statement.setInt(4, id_cliente);
-        statement.setInt(5, id_facilitador);
+        statement.setString(1, tarjeta.getNumero());
+        statement.setDate(2, Date.valueOf(tarjeta.getFecha_exp()));
+        statement.setString(3, tarjeta.getTipo());
+        statement.setInt(4, tarjeta.getId_cliente());
+        statement.setInt(5, tarjeta.getId_facilitador());
         statement.execute();
         connection.close();
 
     }
 
-    
+    @Override
+    public ArrayList<Tarjeta> select() throws SQLException {
+        return null;
+    }
+
 }

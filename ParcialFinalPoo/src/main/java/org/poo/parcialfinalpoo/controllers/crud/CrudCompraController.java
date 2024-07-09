@@ -1,18 +1,17 @@
 package org.poo.parcialfinalpoo.controllers.crud;
 
 import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.poo.parcialfinalpoo.controllers.crud.CrudAbstractController;
-import org.poo.parcialfinalpoo.model.QueryCompra;
-import org.poo.parcialfinalpoo.model.QueryTarjeta;
-import org.poo.parcialfinalpoo.model.Tarjeta;
-import org.poo.parcialfinalpoo.model.Transaccion;
+import org.poo.parcialfinalpoo.modelBase.query.QueryCliente;
+import org.poo.parcialfinalpoo.modelBase.query.QueryCompra;
+import org.poo.parcialfinalpoo.modelBase.query.QueryTarjeta;
+import org.poo.parcialfinalpoo.modelBase.tipos.Transaccion;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 
 public class CrudCompraController extends CrudAbstractController {
     private Label lblTotal;
@@ -24,10 +23,15 @@ public class CrudCompraController extends CrudAbstractController {
     private TextField txtDescripcion;
     private ComboBox<Integer> txtTarjeta;
 
+    @FXML
+    protected void initialize(){
+        query = new QueryCompra();
+    }
+
     @Override
     protected void asignarIdsComboBox() {
         try {
-            cbIds.setItems(FXCollections.observableArrayList(QueryCompra.getIds()));
+            cbIds.setItems(FXCollections.observableArrayList(query.getIds()));
         } catch (SQLException e) {
             alerta("Error de inicialización");
         }
@@ -37,7 +41,7 @@ public class CrudCompraController extends CrudAbstractController {
     protected void enBuscar() {
         try {
             actual = cbIds.getValue();
-            Transaccion transaccion = QueryCompra.select(actual);
+            Transaccion transaccion = (Transaccion) query.select(actual);
             if (txtDescripcion == null){
                 lblTotal.setText(String.valueOf(transaccion.getTotal()));
                 lblDescripcion.setText(transaccion.getDescripcion());
@@ -61,7 +65,8 @@ public class CrudCompraController extends CrudAbstractController {
             return;
         }
         try {
-            QueryCompra.insertar(Double.parseDouble(txtTotal.getText()), txtFecha.getValue(), txtDescripcion.getText(), txtTarjeta.getValue());
+            query.insertar(new Transaccion(0,Double.parseDouble(txtTotal.getText()), txtFecha.getValue(), txtDescripcion.getText(), txtTarjeta.getValue()));
+            informacion("Insertado correctamente");
         } catch (SQLException e){
             alerta(e.getMessage());
         }
@@ -70,10 +75,14 @@ public class CrudCompraController extends CrudAbstractController {
     @Override
     protected void enEliminar() {
         try {
-            QueryCompra.eliminar(actual);
+            query.eliminar(actual);
+            txtTotal.setText("");
+            txtDescripcion.setText("");
+            informacion("Eliminado correctamente");
         } catch (SQLException e){
             alerta(e.getMessage());
         }
+
     }
 
     @Override
@@ -85,7 +94,8 @@ public class CrudCompraController extends CrudAbstractController {
             return;
         }
         try {
-            QueryCompra.actualizar(Double.parseDouble(txtTotal.getText()), txtFecha.getValue(), txtDescripcion.getText(), txtTarjeta.getValue());
+            query.actualizar(new Transaccion(actual,Double.parseDouble(txtTotal.getText()), txtFecha.getValue(), txtDescripcion.getText(), txtTarjeta.getValue()));
+            informacion("Actualizado correctamente");
         } catch (SQLException e){
             alerta(e.getMessage());
         }
@@ -107,8 +117,9 @@ public class CrudCompraController extends CrudAbstractController {
     public void ponerTextFields() {
         txtTotal = new TextField();
         try {
+            QueryTarjeta queryTarjeta = new QueryTarjeta();
             txtTarjeta = new ComboBox<>();
-            txtTarjeta.setItems(FXCollections.observableArrayList(QueryTarjeta.getIds()));
+            txtTarjeta.setItems(FXCollections.observableArrayList(queryTarjeta.getIds()));
         } catch (SQLException e){
             alerta(e.getMessage());
         }

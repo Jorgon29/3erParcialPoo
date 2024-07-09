@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.poo.parcialfinalpoo.BcnApp;
+import org.poo.parcialfinalpoo.modelBase.query.Queryable;
 
 public abstract class CrudAbstractController {
     @FXML protected HBox hbArriba;
@@ -24,6 +25,7 @@ public abstract class CrudAbstractController {
     protected abstract void enActualizar();
     public abstract void ponerLabels();
     public abstract void ponerTextFields();
+    protected Queryable query;
 
     public void ponerBotonInsertar(){
         Button button = new Button();
@@ -82,6 +84,12 @@ public abstract class CrudAbstractController {
     }
     protected void alerta(String mensaje){
         Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setContentText(mensaje);
+        a.setTitle("Error");
+        a.showAndWait();
+    }
+    protected void informacion(String mensaje){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setContentText(mensaje);
         a.setTitle("Error");
         a.showAndWait();

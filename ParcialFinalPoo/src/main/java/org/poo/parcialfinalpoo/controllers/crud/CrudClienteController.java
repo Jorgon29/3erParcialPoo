@@ -3,12 +3,8 @@ package org.poo.parcialfinalpoo.controllers.crud;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import org.poo.parcialfinalpoo.BcnApp;
-import org.poo.parcialfinalpoo.model.Cliente;
-import org.poo.parcialfinalpoo.model.QueryCliente;
+import org.poo.parcialfinalpoo.modelBase.tipos.Cliente;
+import org.poo.parcialfinalpoo.modelBase.query.QueryCliente;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,10 +17,14 @@ public class CrudClienteController extends CrudAbstractController{
     protected Label lblDireccion;
     protected Label lblTelefono;
 
+    @FXML protected void initialize(){
+        query = new QueryCliente();
+    }
+
     protected void enBuscar(){
         try {
 
-            Cliente cliente = QueryCliente.select(cbIds.getValue());
+            Cliente cliente = (Cliente) query.select(cbIds.getValue());
             if (txtNombre == null){
                 lblNombre.setText(cliente.getNombre());
                 lblDireccion.setText(cliente.getDireccion());
@@ -41,24 +41,24 @@ public class CrudClienteController extends CrudAbstractController{
     }
     protected void enActualizar(){
         try {
-            QueryCliente.actualizar(new Cliente(actual, txtNombre.getText(), txtTelefono.getText(), txtDireccion.getText()));
+            query.actualizar(new Cliente(actual, txtNombre.getText(), txtTelefono.getText(), txtDireccion.getText()));
+            informacion("Actualizado correctamente");
         } catch (Exception e){
             alerta("Error en actualización");
         }
     }
     protected void enEliminar(){
         try {
-            QueryCliente.eliminar(actual);
+            query.eliminar(actual);
             asignarIdsComboBox();
             lblTelefono.setText("");
             lblNombre.setText("");
             lblDireccion.setText("");
+            informacion("Eliminado correctamente");
         } catch (SQLException e){
             alerta("Error en eliminación");
         }
     }
-
-
 
 
     public void ponerLabels(){
@@ -81,18 +81,24 @@ public class CrudClienteController extends CrudAbstractController{
     }
 
     protected void asignarIdsComboBox(){
-        ArrayList<Integer> ids = QueryCliente.getIds();
+        ArrayList<Integer> ids = null;
+        try {
+            ids = query.getIds();
+        } catch (SQLException e) {
+            alerta("Error al obtener ids");
+        }
         cbIds.setItems(FXCollections.observableArrayList(ids));
     }
 
     protected void enInsertar(){
         try {
-            QueryCliente.insertar(txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText());
+            query.insertar(new Cliente(0,txtNombre.getText(), txtTelefono.getText(), txtDireccion.getText()));
             txtTelefono.setText("");
             txtNombre.setText("");
             txtDireccion.setText("");
+            informacion("Insertado correctamente");
         } catch (SQLException e){
-            alerta("Error en inserción");
+            alerta(e.getMessage());
         }
     }
 

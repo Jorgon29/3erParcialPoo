@@ -3,17 +3,16 @@ package org.poo.parcialfinalpoo.controllers.crud;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import org.poo.parcialfinalpoo.BcnApp;
-import org.poo.parcialfinalpoo.model.*;
+import org.poo.parcialfinalpoo.modelBase.query.QueryCliente;
+import org.poo.parcialfinalpoo.modelBase.query.QueryFacilitador;
+import org.poo.parcialfinalpoo.modelBase.query.QueryTarjeta;
+import org.poo.parcialfinalpoo.modelBase.tipos.Cliente;
+import org.poo.parcialfinalpoo.modelBase.tipos.Facilitador;
+import org.poo.parcialfinalpoo.modelBase.tipos.Tarjeta;
 
 import java.sql.SQLException;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class CrudTarjetaController extends CrudAbstractController {
     protected Label lblNumero;
@@ -27,10 +26,16 @@ public class CrudTarjetaController extends CrudAbstractController {
     protected ComboBox<Cliente> txtCliente;
     protected ComboBox<Facilitador> txtFacilitador;
 
+    @FXML
+    protected void initialize(){
+        System.out.println("Entrado a initialize");
+        query = new QueryTarjeta();
+    }
+
     protected void enBuscar(){
         try {
             actual = cbIds.getValue();
-            Tarjeta tarjeta = QueryTarjeta.select(actual);
+            Tarjeta tarjeta = (Tarjeta) query.select(actual);
             if (txtNumero == null){
                 lblNumero.setText(tarjeta.getNumero());
                 lblTipo.setText(tarjeta.getTipo());
@@ -50,15 +55,17 @@ public class CrudTarjetaController extends CrudAbstractController {
     }
     protected void enActualizar(){
         try {
-            QueryTarjeta.actualizar(txtNumero.getText(), txtFechaExp.getValue(), txtTipo.getValue(), txtCliente.getValue().getId(), txtFacilitador.getValue().getId());
+            query.actualizar(new Tarjeta(actual,txtTipo.getValue(), txtNumero.getText(), txtFechaExp.getValue(), txtCliente.getValue().getNombre() ,txtCliente.getValue().getId(), txtFacilitador.getValue().getNombre(),txtFacilitador.getValue().getId()));
+            informacion("Actualizado correctamente");
         } catch (Exception e){
             alerta("Error en actualización");
         }
     }
     protected void enEliminar(){
         try {
-            QueryTarjeta.eliminar(actual);
+            query.eliminar(actual);
             asignarIdsComboBox();
+            informacion("Eliminado correctamente");
         } catch (SQLException e){
             alerta("Error SQL en eliminación");
         } catch (Exception e){
@@ -85,8 +92,10 @@ public class CrudTarjetaController extends CrudAbstractController {
         txtCliente = new ComboBox<>();
         txtTipo = new ComboBox<>();
         try {
-            txtFacilitador.setItems(FXCollections.observableArrayList(QueryFacilitador.select()));
-            txtCliente.setItems(FXCollections.observableArrayList(QueryCliente.select()));
+            QueryFacilitador queryFacilitador = new QueryFacilitador();
+            QueryCliente queryCliente = new QueryCliente();
+            txtFacilitador.setItems(FXCollections.observableArrayList(queryFacilitador.select()));
+            txtCliente.setItems(FXCollections.observableArrayList(queryCliente.select()));
         } catch (SQLException e){
             alerta("Error poniendo editables");
         }
@@ -104,7 +113,7 @@ public class CrudTarjetaController extends CrudAbstractController {
     protected void asignarIdsComboBox(){
         ArrayList<Integer> ids = null;
         try {
-            ids = QueryTarjeta.getIds();
+            ids = query.getIds();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -114,8 +123,9 @@ public class CrudTarjetaController extends CrudAbstractController {
 
     protected void enInsertar(){
         try {
-            QueryTarjeta.insertar(txtNumero.getText(), txtFechaExp.getValue(), txtTipo.getValue(), txtCliente.getValue().getId(), txtFacilitador.getValue().getId());
-       txtNumero.setText("");
+            query.insertar(new Tarjeta(actual,txtTipo.getValue(), txtNumero.getText(), txtFechaExp.getValue(), txtCliente.getValue().getNombre() ,txtCliente.getValue().getId(), txtFacilitador.getValue().getNombre(),txtFacilitador.getValue().getId()));
+            informacion("Insertado correctamente");
+            txtNumero.setText("");
 
         } catch (SQLException e){
             alerta("Error SQL en inserción");
