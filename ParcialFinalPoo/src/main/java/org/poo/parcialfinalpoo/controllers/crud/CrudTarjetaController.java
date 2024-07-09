@@ -45,20 +45,14 @@ public class CrudTarjetaController extends CrudAbstractController {
                 txtFacilitador.getEditor().setText(tarjeta.getFacilitador());
             }
         } catch (Exception e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Tarjeta no encontrada");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Tarjeta no encontrada");
         }
     }
     protected void enActualizar(){
         try {
             QueryTarjeta.actualizar(txtNumero.getText(), txtFechaExp.getValue(), txtTipo.getValue(), txtCliente.getValue().getId(), txtFacilitador.getValue().getId());
         } catch (Exception e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la actualizacion");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error en actualización");
         }
     }
     protected void enEliminar(){
@@ -66,10 +60,9 @@ public class CrudTarjetaController extends CrudAbstractController {
             QueryTarjeta.eliminar(actual);
             asignarIdsComboBox();
         } catch (SQLException e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la eliminación");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error SQL en eliminación");
+        } catch (Exception e){
+            alerta("Error en eliminación");
         }
     }
 
@@ -95,11 +88,7 @@ public class CrudTarjetaController extends CrudAbstractController {
             txtFacilitador.setItems(FXCollections.observableArrayList(QueryFacilitador.select()));
             txtCliente.setItems(FXCollections.observableArrayList(QueryCliente.select()));
         } catch (SQLException e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("SQL exception");
-            a.setTitle("Error");
-            a.showAndWait();
-            System.exit(3);
+            alerta("Error poniendo editables");
         }
         txtNumero = new TextField();
         txtTipo.setItems(FXCollections.observableArrayList(Arrays.asList("Credito", "Debito")));
@@ -129,10 +118,9 @@ public class CrudTarjetaController extends CrudAbstractController {
        txtNumero.setText("");
 
         } catch (SQLException e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la inserción");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error SQL en inserción");
+        } catch (Exception e){
+            alerta("Error en inserción");
         }
     }
 

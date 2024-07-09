@@ -36,20 +36,14 @@ public class CrudClienteController extends CrudAbstractController{
             }
             actual = cbIds.getValue();
         } catch (Exception e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Cliente no encontrado");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Cliente no encontrado");
         }
     }
     protected void enActualizar(){
         try {
             QueryCliente.actualizar(new Cliente(actual, txtNombre.getText(), txtTelefono.getText(), txtDireccion.getText()));
         } catch (Exception e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la actualizacion");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error en actualización");
         }
     }
     protected void enEliminar(){
@@ -60,10 +54,7 @@ public class CrudClienteController extends CrudAbstractController{
             lblNombre.setText("");
             lblDireccion.setText("");
         } catch (SQLException e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la eliminación");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error en eliminación");
         }
     }
 
@@ -101,10 +92,7 @@ public class CrudClienteController extends CrudAbstractController{
             txtNombre.setText("");
             txtDireccion.setText("");
         } catch (SQLException e){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("Error en la inserción");
-            a.setTitle("Error");
-            a.showAndWait();
+            alerta("Error en inserción");
         }
     }
 

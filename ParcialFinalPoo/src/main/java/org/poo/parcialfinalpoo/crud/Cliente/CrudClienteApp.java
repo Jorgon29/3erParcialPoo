@@ -11,15 +11,6 @@ import org.poo.parcialfinalpoo.crud.CrudAbstractApp;
 import java.io.IOException;
 
 public class CrudClienteApp extends CrudAbstractApp {
-    private FXMLLoader loader;
-    private Parent root;
-    @Override
-    public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(root, 700, 500);
-        stage.setTitle("BCN");
-        stage.setScene(scene);
-        stage.show();
-    }
     public void cambiarTitulo(String titulo){
         ((CrudClienteController) loader.getController()).getLblTitulo().setText(titulo);
     }

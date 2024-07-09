@@ -1,6 +1,7 @@
 package org.poo.parcialfinalpoo.controllers.crud;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -78,6 +79,12 @@ public abstract class CrudAbstractController {
 
     public Label getLblTitulo(){
         return lblTitulo;
+    }
+    protected void alerta(String mensaje){
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setContentText(mensaje);
+        a.setTitle("Error");
+        a.showAndWait();
     }
 
 }
