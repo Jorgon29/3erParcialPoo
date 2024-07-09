@@ -43,9 +43,20 @@ select T.total as total, T.fecha as fecha, T.descripcion as descripcion, C.nombr
 select sum(T.total) as total from Transaccion T inner join Tarjeta T2 on T2.id = T.id_tarjeta where T2.id_cliente = 1 and datepart(month,fecha) = 012 and datepart(year,fecha) = 2004;
 
 select * from Tarjeta
-update Tarjeta set tipo = 'credito' where id = 1
+update Tarjeta set tipo = 'credito' where id = 'papa'
 insert into Facilitador (nombre) VALUES ('Chivo wallet')
 select * from Facilitador
-select C.nombre as nombre, Sum(T2.total) as total, COUNT(T2.id) as transacciones from Cliente C inner join Tarjeta T on C.id = T.id_cliente inner join Transaccion T2 on T.id = T2.id_tarjeta inner join Facilitador F on F.id = T.id_facilitador where F.nombre = 'nayib'
+select C.nombre as nombre, Sum(T2.total) as total, COUNT(T2.id) as transacciones from Cliente C inner join Tarjeta T on C.id = T.id_cliente inner join Transaccion T2 on T.id = T2.id_tarjeta inner join Facilitador F on F.id = T.id_facilitador where F.nombre = ''
 GROUP BY C.nombre
 select * from Transaccion
+
+CREATE DATABASE BCN;
+USE BCN;
+
+CREATE LOGIN Final_Poo_2024 WITH PASSWORD = 'FinalPoo2024_25%';
+
+IF NOT EXISTS (SELECT * FROM sys.database_principals WHERE name = N'Final_Poo_2024')
+    BEGIN
+        CREATE USER Final_Poo_2024 FOR LOGIN Final_Poo_2024;
+        EXEC sp_addrolemember N'db_owner', N'Final_Poo_2024';
+    END;

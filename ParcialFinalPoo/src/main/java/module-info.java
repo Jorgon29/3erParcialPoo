@@ -9,13 +9,13 @@ module org.poo.parcialfinalpoo {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    exports org.poo.parcialfinalpoo.documentViews;
 
     exports org.poo.parcialfinalpoo.documentsControllers;
     opens org.poo.parcialfinalpoo.documentsControllers to javafx.fxml;
 
     requires kotlin.stdlib;
 
-    opens org.poo.parcialfinalpoo to javafx.fxml;
     exports org.poo.parcialfinalpoo;
     exports org.poo.parcialfinalpoo.crud;
     exports org.poo.parcialfinalpoo.controllers.crud.menuStrategies;
@@ -30,4 +30,6 @@ module org.poo.parcialfinalpoo {
     opens org.poo.parcialfinalpoo.controllers;
     opens org.poo.parcialfinalpoo.controllers.crud;
     opens org.poo.parcialfinalpoo.crud to javafx.fxml, javafx.graphics;
+    opens org.poo.parcialfinalpoo.documentViews to javafx.fxml, javafx.graphics;
+    opens org.poo.parcialfinalpoo to javafx.fxml, javafx.graphics;
 }

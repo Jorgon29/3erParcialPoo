@@ -18,7 +18,7 @@ public class documentBController {
 
 
     @FXML
-    private DatePicker fecha;
+    private DatePicker fecha; //00054123 EL datepicker para la fecha
 
     @FXML
     private TextField searchID; //00054123 Un text field para ingresar la id a buscar
@@ -28,7 +28,7 @@ public class documentBController {
 
     public void onGenerarReporte(){
         try{
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "", "");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "Final_Poo_2024", "FinalPoo2024_25%");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
             Statement stmt = con.createStatement(); //00054123 se crea un statement usando la conexion
 
             ResultSet rs = stmt.executeQuery("select c.nombre as nombre from Cliente c where c.id = "+ searchID.getText());//00054123 Se ejecuta la query que busca el nombre de la persona para tener un reporte mas completo
@@ -52,7 +52,7 @@ public class documentBController {
 
                 fw.close(); //00054123 Cierra el file writter por buenas practicas y ahorro de recursos
 
-            }catch (IOException e){System.out.println("AYUDA");} //00054123 El catch para un error en los archivos
+            }catch (IOException e){} //00054123 El catch para un error en los archivos
             con.close(); //00054123 Cerrando la conexion para ahorrar recursos y por buenas practicas
 
         }catch(SQLException e){
@@ -66,13 +66,14 @@ public class documentBController {
         } //00054123 catch por un error en la base de datos
 
     }
+    @FXML
     public void onVolver(){
-        ((Stage)fecha.getScene().getWindow()).close();
-        Stage stage = new Stage();
-        BcnApp bcnApp = new BcnApp();
+
+
+        BcnApp bcnApp = new BcnApp(); //00054123 Se crea un app de menu principal
         try {
-            bcnApp.start(stage);
-        }catch (Exception e){};
+            bcnApp.start(((Stage)fecha.getScene().getWindow())); //SE inicia la app del menu principal usando la misma escena ya creada
+        }catch (Exception e){}; //00054123 Catch de exepciones durante el inicio de una app
 
     }
 

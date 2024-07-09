@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.poo.parcialfinalpoo.controllers.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.poo.parcialfinalpoo.controllers.MenuPrincipalController">
    <top>
       <Label alignment="CENTER" text="Banco Central de Nlogonia" BorderPane.alignment="CENTER">
          <font>
@@ -27,9 +27,9 @@
                         <Font name="Ubuntu" size="20.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" text="Clientes" fx:id="btnClientes" onAction="#enClientes"/>
-                  <Button mnemonicParsing="false" text="Tarjetas" fx:id="btnTarjetas" onAction="#enTarjeta"/>
-                  <Button mnemonicParsing="false" text="Compras" fx:id="btnCompras" onAction="#enCompras"/>
+                  <Button fx:id="btnClientes" mnemonicParsing="false" onAction="#enClientes" text="Clientes" />
+                  <Button fx:id="btnTarjetas" mnemonicParsing="false" onAction="#enTarjeta" text="Tarjetas" />
+                  <Button fx:id="btnCompras" mnemonicParsing="false" onAction="#enCompras" text="Compras" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="2000.0" prefWidth="2000.0">
@@ -39,13 +39,13 @@
                         <Font name="Ubuntu" size="20.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" text="A" fx:id="btnReporteA"/>
-                  <Button mnemonicParsing="false" text="B" fx:id="btnReporteB"/>
-                  <Button mnemonicParsing="false" text="C" fx:id="btnReporteC"/>
-                  <Button mnemonicParsing="false" text="D" fx:id="btnReporteD"/>
+                  <Button fx:id="btnReporteA" mnemonicParsing="false" onAction="#onA" text="A" />
+                  <Button fx:id="btnReporteB" mnemonicParsing="false" onAction="#onB" text="B" />
+                  <Button fx:id="btnReporteC" mnemonicParsing="false" onAction="#onC" text="C" />
+                  <Button fx:id="btnReporteD" mnemonicParsing="false" onAction="#onD" text="D" />
                   <Pane prefHeight="32.0" prefWidth="300.0">
                      <children>
-                        <Button layoutX="232.0" layoutY="4.0" mnemonicParsing="false" text="Salir" fx:id="btnSalir" onAction="#enSalir"/>
+                        <Button fx:id="btnSalir" layoutX="232.0" layoutY="4.0" mnemonicParsing="false" onAction="#enSalir" text="Salir" />
                      </children>
                   </Pane>
                </children>
