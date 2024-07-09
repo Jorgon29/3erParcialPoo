@@ -40,13 +40,13 @@
                         <Font name="Ubuntu" size="20.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" text="A" fx:id="btnReporteA"/>
-                  <Button mnemonicParsing="false" text="B" fx:id="btnReporteB"/>
-                  <Button mnemonicParsing="false" text="C" fx:id="btnReporteC"/>
-                  <Button mnemonicParsing="false" text="D" fx:id="btnReporteD"/>
+                  <Button fx:id="btnReporteA" mnemonicParsing="false" onAction="#onA" text="A" />
+                  <Button fx:id="btnReporteB" mnemonicParsing="false" onAction="#onB" text="B" />
+                  <Button fx:id="btnReporteC" mnemonicParsing="false" onAction="#onC" text="C" />
+                  <Button fx:id="btnReporteD" mnemonicParsing="false" onAction="#onD" text="D" />
                   <Pane prefHeight="32.0" prefWidth="300.0">
                      <children>
-                        <Button layoutX="232.0" layoutY="4.0" mnemonicParsing="false" text="Salir" fx:id="btnSalir" onAction="#enSalir"/>
+                        <Button fx:id="btnSalir" layoutX="232.0" layoutY="4.0" mnemonicParsing="false" onAction="#enSalir" text="Salir" />
                      </children>
                   </Pane>
                </children>

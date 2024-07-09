@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.poo.parcialfinalpoo.BcnApp;
 
@@ -26,16 +25,12 @@ public class documentAController {
 
     @FXML
     private TextField IDBuscar; //0054123 Un textfield donde se ingresa la id que se quiere buscar
-    @FXML
-    private Button generarReporte;
-    @FXML
-    private Button salir;
 
 
     public void generarReporte(){
         try {
 
-            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "", "");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://localhost;database=BCN;Encrypt=false", "Final_Poo_2024", "FinalPoo2024_25%");//00054123 Se realiza la conexion a la base de datos usando microsoft sql server y jdbc
             Statement stmt = con.createStatement(); //00054123 Se crea un statement usando la conexion al servidor
 
             ResultSet rs = stmt.executeQuery("select c.nombre as nombre from Cliente c where c.id = "+ IDBuscar.getText());//00054123 Se ejecuta la query que busca el nombre de la persona para tener un reporte mas completo
@@ -64,7 +59,7 @@ public class documentAController {
                 }
                 fileWriter.close();//00054123 Se cierra el file writter para evitar uso innecesario de recursos
 
-            }catch (IOException E){ System.out.println("AYUDAAAA");} //00054123 Catch para errores al momento de trabajar los archivos
+            }catch (IOException E){} //00054123 Catch para errores al momento de trabajar los archivos
 
             con.close(); //00054123 se cierra la conexion al servidor para evitar uso de recursos innecesarios y por buenas practicas
 
@@ -80,13 +75,13 @@ public class documentAController {
 
 
     }
+    @FXML
     public void onVolver(){
-        ((Stage)IDBuscar.getScene().getWindow()).close();
-        Stage stage = new Stage();
-        BcnApp bcnApp = new BcnApp();
+
+        BcnApp bcnApp = new BcnApp(); //00054123 SE crea una app del menu principal
         try {
-            bcnApp.start(stage);
-        }catch (Exception e){};
+            bcnApp.start(((Stage)IDBuscar.getScene().getWindow())); //00054123 SE reutiliza la escena y se inicia la app neuva
+        }catch (Exception e){}; //00054123 Catch de exepciones al iniciar una app
 
     }
 
