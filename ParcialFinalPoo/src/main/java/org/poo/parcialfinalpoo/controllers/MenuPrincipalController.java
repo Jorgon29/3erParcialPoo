@@ -14,52 +14,43 @@ import org.poo.parcialfinalpoo.documentViews.documentB_App;
 import org.poo.parcialfinalpoo.documentViews.documentC_App;
 import org.poo.parcialfinalpoo.documentViews.documentD_App;
 
-public class MenuPrincipalController {
+public class MenuPrincipalController { // 00016823 Menú principal con los botones que llevan a las acciones crud y generación de reportes
     @FXML
-    protected Button btnClientes;
-    @FXML
-    protected Button btnCompras;
-    @FXML
-    protected Button btnTarjetas;
-
-    @FXML
-    public void enClientes(){
+    public void enClientes(){// 00016823 Método ejecutado al presionar el botón clientes
         try {
-            (new CrudApp()).start(BcnApp.getAppStage(), new ClienteStrategy());
+            (new CrudApp()).start(BcnApp.getAppStage(), new ClienteStrategy());// 00016823 Se inicia una nueva CrudApp con una strategy de cliente
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    public void enCompras(){
+    public void enCompras(){ // 00016823 Método ejecutado al presionar el botón compras
         try {
-            (new CrudApp()).start(BcnApp.getAppStage(), new CompraStrategy());
+            (new CrudApp()).start(BcnApp.getAppStage(), new CompraStrategy()); // 00016823 Se inicia una nueva CrudApp con una strategy de compra
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
     @FXML
-    public void enTarjeta(){
+    public void enTarjeta(){ // 00016823 Método ejecutado al presionar el botón tarjeta
         try {
-            (new CrudApp()).start(BcnApp.getAppStage(), new TarjetaStrategy());
+            (new CrudApp()).start(BcnApp.getAppStage(), new TarjetaStrategy()); // 00016823 Se inicia una nueva CrudApp con una strategy de tarjeta
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
     @FXML
-    public void enFacilitador(){
+    public void enFacilitador(){ // 00016823 Método ejecutado al presionar el botón facilitador
         try {
-            (new CrudApp()).start(BcnApp.getAppStage(), new FacilitadorStrategy());
+            (new CrudApp()).start(BcnApp.getAppStage(), new FacilitadorStrategy()); // 00016823 Se inicia una nueva CrudApp con una strategy de facilitador
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    public void enSalir(){
-        BcnApp.getAppStage().close();
-    }
+    public void enSalir(){BcnApp.getAppStage().close();}  // 00016823 Se cierra la stage del programa y finaliza ejecución
 
     @FXML
     public void onA(){
